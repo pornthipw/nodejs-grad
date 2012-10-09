@@ -96,27 +96,36 @@ app.post('/login',
                 res.locals.username = req.param('username');
                 return res.render('index', { error: true });
             }
-
-            // make passportjs setup the user object, serialize the user, ...
+            
             req.login(user, {}, function(err) {
-                if (err) { return next(err) };
-                //return res.redirect("/#/list/");
-                res.json({success:true,user: req.user}); 
-                //return res.render('index', { user: req.user,success: true });
-
-                
-                
+                if (err) { return next(err) };                
+                res.json({success:true,user: req.user});                                               
             });
         })(req, res, next);
         return;
     }
 );
 
-require('./gradfiles/app');
+app.get('/userinfo', function(req, res, next) {
+  if(req.isAuthenticated()) {
+    res.json(req.user);
+  } else {
+    res.json({});
+  }
+});
+
+require('./apps/gradfiles/app');
+
+app.get('/', function(req, res) {  
+  var ctx = {
+  };
+  res.render('index', ctx);   
+});
 
 app.listen(config.site.port || 3000);
 
 console.log("Mongo Express server listening on port " + (config.site.port || 3000));
+
 
 
 

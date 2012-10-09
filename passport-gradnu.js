@@ -55,17 +55,5 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-function ensureAuthenticated(req, res, next) {
-  console.log('+authentication.'); 
-  if (req.isAuthenticated()) {         
-    console.log('user passes the authentication.');    
-    return next();
-  }
-  console.log('user does not pass the authentication.'); 
-  res.json({'error':123});
-  console.log('-authentication.'); 
-}
-
-module.exports.ensureAuthenticated = ensureAuthenticated;
 
 
