@@ -1,0 +1,14 @@
+{
+  "name" : "nodejs-mgfile",
+  "version" : "0.0.1",
+  "dependencies" : {
+    "express" : "*",    
+    "mongodb" : "*",
+    "hbs" : "*",
+    "underscore" : "*",
+    "passport": ">= 0.0.0",
+    "passport-local": ">= 0.0.0",
+    "connect-flash": "0.1.x",
+    "connect-roles":"*"
+  }
+}
